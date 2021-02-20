@@ -13,16 +13,19 @@ export default class CourseTable
   render() {
     return(
       <div>
-          <Link to="/courses/grid">
-            <i className="fas fa-2x fa-th float-right"></i>
-          </Link>
-        <h2>Course Table</h2>
+
         <table className="table">
+        <tr>
+                                <th>Title</th>
+                                <th>Owned By</th>
+                                <th>Last Modified</th>
+                                <th><i className="fas fa-2x fa-folder"></i></th>
+                                <th><i className="fas fa-2x fa-sort-alpha-down"></i></th>
+                                <th><Link to="/courses/grid">
+                                 <i className="fas fa-2x fa-th"></i>
+                                 </Link></th>
+                            </tr>
           <tbody>
-          {/*<CourseRow title="CS1234" owner="alice" lastModified={"1/12/34"}/>*/}
-          {/*<CourseRow title="CS2345" owner="bob"   lastModified={"2/23/24"}/>*/}
-          {/*<CourseRow title="CS3456" owner="charlie" lastModified={"3/22/14"}/>*/}
-          {/*<CourseRow title="CS4567" owner="dan"   lastModified={"4/12/36"}/>*/}
           {
             this.props.courses.map((course, ndx) =>
               <CourseRow

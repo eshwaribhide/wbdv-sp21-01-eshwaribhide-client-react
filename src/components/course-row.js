@@ -41,11 +41,14 @@ const CourseRow = (
         </td>
         <td>{owner}</td>
         <td>{lastModified}</td>
+        <td></td>
+        <td></td>
         <td>
             <i onClick={() => deleteCourse(course)} className="fas fa-trash"></i>
             {!editing && <i onClick={() => setEditing(true)} className="fas fa-edit"></i>}
             {editing && <i onClick={() => saveTitle()} className="fas fa-check"></i>}
         </td>
+
       </tr>
   )
 }

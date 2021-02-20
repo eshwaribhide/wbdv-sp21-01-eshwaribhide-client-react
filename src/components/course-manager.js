@@ -96,7 +96,24 @@ class CourseManager extends React.Component {
           <Link to="/">
             <i className="fas fa-2x fa-home float-right"></i>
           </Link>
-        <h1>Course Manager</h1>
+          <br/>
+
+        <div class="wbdv-sticky-top wbdv-padding-5px">
+            <div class="row">
+                <div class="col-sm-1">
+                    <i class="fa fa-bars fa-2x"></i>
+                </div>
+                <div class="col-sm-2">
+                    <h3>Course Manager</h3>
+                </div>
+                <div class="col-sm-5">
+                    <input class="form-control"/>
+                </div>
+                <div class="col-sm-4">
+                    <i class="fa fa-plus fa-2x"></i>
+                </div>
+            </div>
+        </div>
         <button onClick={this.addCourse}>Add Course</button>
         <Route path="/courses/table">
           <CourseTable
