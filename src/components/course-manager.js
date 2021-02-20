@@ -6,11 +6,16 @@ import {Link, Route} from "react-router-dom";
 import courseService, {findAllCourses, deleteCourse} from "../services/course-service";
 
 class CourseManager extends React.Component {
-  state = {
-    courses: [],
-    qwe: 123,
-    sdf: 456
+constructor(props) {
+    super(props);
+    this.state = {
+      inputValue: '',
+      courses: []
+    };
+//    this.addCourse = this.addCourse.bind(this)
+//    this.updateInputValue = this.updateInputValue.bind(this)
   }
+
 
   updateCourse = (course) => {
     console.log(course)
@@ -35,14 +40,17 @@ class CourseManager extends React.Component {
     //     .then(actualCourses => this.setState({
     //       courses: actualCourses
     //     }))
+    {
     findAllCourses()
-        .then(courses => this.setState({courses}))
+        .then(courses => this.setState({courses}));
+    }
 
   addCourse = () => {
+     console.log('iv', this.state.inputValue)
     const newCourse = {
-      title: "New Course",
-      owner: "New Owner",
-      lastModified: "Never"
+      title: this.state.inputValue,
+      owner: "me",
+      lastModified: "1/1/2021"
     }
     courseService.createCourse(newCourse)
         .then(course => this.setState(
@@ -53,34 +61,11 @@ class CourseManager extends React.Component {
                   course
               ]
             })))
-
-    // this.state.courses.push(newCourse)
-    // this.setState(this.state)
   }
 
   deleteCourse = (courseToDelete) => {
     courseService.deleteCourse(courseToDelete._id)
         .then(status => {
-          // const newCourses = this.state.courses
-          //     .filter(course => course !== courseToDelete)
-          // this.setState({
-          //   courses: newCourses
-          // })
-          // this.setState((prevState) => {
-          //   // let nextState = {...prevState}
-          //   // nextState.courses =
-          //   //     prevState
-          //   //         .courses
-          //   //         .filter(course => course !== courseToDelete)
-          //
-          //   let nextState = {
-          //     ...prevState,
-          //     courses: prevState.courses.filter
-          //               (course => course !== courseToDelete)
-          //   }
-          //
-          //   return nextState
-          // })
 
           this.setState((prevState) => ({
               ...prevState,
@@ -89,6 +74,11 @@ class CourseManager extends React.Component {
           }))
         })
   }
+
+
+  updateInputValue(evt) {
+       this.setState({ inputValue: evt.target.value });
+    };
 
   render() {
     return(
@@ -107,14 +97,15 @@ class CourseManager extends React.Component {
                     <h3>Course Manager</h3>
                 </div>
                 <div class="col-sm-5">
-                    <input class="form-control"/>
+
+                  <input class="form-control" value={this.state.inputValue} onChange={evt => this.updateInputValue(evt)}/>
+
                 </div>
                 <div class="col-sm-4">
-                    <i class="fa fa-plus fa-2x"></i>
+                    <i class="fa fa-plus fa-2x" onClick={this.addCourse}></i>
                 </div>
             </div>
         </div>
-        <button onClick={this.addCourse}>Add Course</button>
         <Route path="/courses/table">
           <CourseTable
               updateCourse={this.updateCourse}
@@ -126,12 +117,6 @@ class CourseManager extends React.Component {
               deleteCourse={this.deleteCourse}
               courses={this.state.courses}/>
         </Route>
-          {/*<Route path="/courses/editor">*/}
-          {/*    <CourseEditor/>*/}
-          {/*</Route>*/}
-          {/*<Route path="/courses/editor"*/}
-          {/*       render={(props) => <CourseEditor props={props}/>}>*/}
-          {/*</Route>*/}
           <Route path="/courses/editor"
                  render={(props) => <CourseEditor {...props}/>}>
           </Route>
