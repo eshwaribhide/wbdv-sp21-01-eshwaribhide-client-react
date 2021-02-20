@@ -40,17 +40,15 @@ const CourseCard = (
                           className="card-title"/>
                   }
 
-          <h5 className="card-title">{course.title}</h5>
 
-          <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</p>
+
+          <p className="card-text">Some description</p>
 
             {editing && <i onClick={() => saveTitle()} className="fas fa-check" style={{color:"green"}}></i>}
             {editing && <i onClick={() => deleteCourse(course)} className="fas fa-times" style={{color:"red"}}></i>}
             {!editing && <i onClick={() => setEditing(true)} className="fas fa-edit" style={{color:"blue"}}></i>}
 
 
-          <i className="fas fa-trash"></i>
         </div>
       </div>
     </div>
