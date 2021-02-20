@@ -91,26 +91,26 @@ constructor(props) {
 
         <div class="wbdv-sticky-top wbdv-padding-5px">
             <div class="row">
-                <div class="col-sm-1">
+                <div class="col-2 col-sm-1">
                     <i class="fa fa-bars fa-2x"></i>
                 </div>
-                <div class="col-sm-2">
+                <div class="col-sm-3 d-none d-lg-block">
                     <h3>Course Manager</h3>
                 </div>
-                <div class="col-sm-5">
+                <div class="col-8 col-sm-6">
 
                   <input class="form-control" value={this.state.inputValue} onChange={evt => this.updateInputValue(evt)}/>
 
                 </div>
-                <div class="col-sm-4">
-                <span class="fa-stack fa-2x">
+                <div class="col-2">
+                <span class="fa-stack fa">
                   <i class="fa fa-circle fa-stack-2x" style={{color: "Red"}} onClick={this.addCourse}></i>
                                       <i class="fa fa-plus fa-stack-1x fa-inverse" onClick={this.addCourse}></i>
                 </span>
 
                 </div>
             </div>
-
+<br/>
         </div>
 
         <span class="fa-stack fa-2x" style={{position: "absolute", bottom: "30px", right:"50px"}}>

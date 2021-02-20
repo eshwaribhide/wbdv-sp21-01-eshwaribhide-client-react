@@ -39,8 +39,8 @@ const CourseRow = (
                     className="form-control"/>
             }
         </td>
-        <td>{owner}</td>
-        <td>{lastModified}</td>
+        <td class="d-none d-md-table-cell">{owner}</td>
+        <td class="d-none d-lg-table-cell">{lastModified}</td>
         <td></td>
         <td></td>
         <td>
