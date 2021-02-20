@@ -1,5 +1,5 @@
 const COURSES_URL = "https://wbdv-generic-server.herokuapp.com/api/001857727/courses";
-
+//_domain and _nuid meta key-value pairs with your PUT request
 export const findAllCourses = () =>
     fetch(COURSES_URL)
         .then(response => response.json())
@@ -17,6 +17,12 @@ export const createCourse = (course) =>
         headers: {
             'content-type': 'application/json'
         }
+    })
+        .then(response => response.json())
+
+export const findCourseById = (courseId) =>
+    fetch(`${COURSES_URL}/${courseId}`, {
+        method: 'GET'
     })
         .then(response => response.json())
 
