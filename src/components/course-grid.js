@@ -2,17 +2,24 @@ import React from 'react'
 import CourseCard from "./course-card";
 import {Link} from "react-router-dom";
 
-const CourseGrid = ({courses}) =>
+const CourseGrid = ({updateCourse, deleteCourse, courses}) =>
   <div>
       <Link to="/courses/table">
         <i className="fas fa-list fa-2x float-right"></i>
       </Link>
-    <h2>Course Grid {courses.length}</h2>
     <div className="row">
     {
-      courses.map(course =>
-        <CourseCard course={course}/>
-      )
+
+      courses.map((course, ndx) =>
+                               <CourseCard
+                                   updateCourse={updateCourse}
+                                 deleteCourse={deleteCourse}
+                                 key={ndx}
+                                 course={course}
+                                 title={course.title}
+                                 owner={course.owner}
+                                 lastModified={course.lastModified}
+                               />)
     }
     </div>
   </div>
