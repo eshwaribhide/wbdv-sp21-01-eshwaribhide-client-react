@@ -45,7 +45,7 @@ const CourseCard = (
           <p className="card-text">Some description</p>
 
             {editing && <i onClick={() => saveTitle()} className="fas fa-check" style={{color:"green"}}></i>}
-            {editing && <i onClick={() => deleteCourse(course)} className="fas fa-times" style={{color:"red"}}></i>}
+            {editing && <i onClick={() => { setEditing(false); deleteCourse(course)}} className="fas fa-times" style={{color:"red"}}></i>}
             {!editing && <i onClick={() => setEditing(true)} className="fas fa-edit" style={{color:"blue"}}></i>}
 
 

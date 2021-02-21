@@ -62,7 +62,6 @@ constructor(props) {
         })
   }
 
-
   updateInputValue(evt) {
        this.setState({ inputValue: evt.target.value });
     };
