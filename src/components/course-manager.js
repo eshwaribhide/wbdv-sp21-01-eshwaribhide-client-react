@@ -12,8 +12,6 @@ constructor(props) {
       inputValue: '',
       courses: []
     };
-//    this.addCourse = this.addCourse.bind(this)
-//    this.updateInputValue = this.updateInputValue.bind(this)
   }
 
 
@@ -24,22 +22,10 @@ constructor(props) {
           ...prevState,
           courses: prevState.courses.map(
               (c) => c._id === course._id ? course : c)
-
-          // courses: prevState.courses.map(c => {
-          //   if(c._id === course._id) {
-          //     return course
-          //   } else {
-          //     return c
-          //   }
-          // })
         })))
   }
 
   componentDidMount = () =>
-    // findAllCourses()
-    //     .then(actualCourses => this.setState({
-    //       courses: actualCourses
-    //     }))
     {
     findAllCourses()
         .then(courses => this.setState({courses}));
@@ -131,10 +117,10 @@ constructor(props) {
               deleteCourse={this.deleteCourse}
               courses={this.state.courses}/>
         </Route>
-          <Route path="/courses/editor"
+        <Route path="/courses/editor"
                  render={(props) => <CourseEditor {...props}/>}>
-          </Route>
-     
+        </Route>
+
       </div>
     )
   }
