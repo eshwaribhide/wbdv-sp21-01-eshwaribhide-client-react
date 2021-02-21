@@ -6,13 +6,13 @@ import {Link, Route} from "react-router-dom";
 import courseService, {findAllCourses, deleteCourse} from "../services/course-service";
 
 class CourseManager extends React.Component {
-constructor(props) {
-    super(props);
-    this.state = {
-      inputValue: '',
-      courses: []
-    };
-  }
+  constructor(props) {
+      super(props);
+      this.state = {
+        inputValue: '',
+        courses: []
+      };
+    }
 
 
   updateCourse = (course) => {
@@ -72,6 +72,7 @@ constructor(props) {
           <Link to="/">
             <i className="fas fa-2x fa-home float-right"></i>
           </Link>
+
           <br/>
 
         <div class="wbdv-sticky-top wbdv-padding-5px">
@@ -83,27 +84,22 @@ constructor(props) {
                     <h3>Course Manager</h3>
                 </div>
                 <div class="col-8 col-sm-6">
-
                   <input class="form-control" value={this.state.inputValue} onChange={evt => this.updateInputValue(evt)}/>
-
                 </div>
                 <div class="col-2">
-                <span class="fa-stack fa">
-                  <i class="fa fa-circle fa-stack-2x" style={{color: "Red"}} onClick={this.addCourse}></i>
-                                      <i class="fa fa-plus fa-stack-1x fa-inverse" onClick={this.addCourse}></i>
-                </span>
-
+                  <span class="fa-stack fa">
+                    <i class="fa fa-circle fa-stack-2x" style={{color: "Red"}} onClick={this.addCourse}></i>
+                    <i class="fa fa-plus fa-stack-1x fa-inverse" onClick={this.addCourse}></i>
+                  </span>
                 </div>
             </div>
-<br/>
+            <br/>
         </div>
 
-
         <span class=" fa-stack fa-2x" style={{position: "absolute", bottom: "30px", right:"50px"}}>
-                          <i class="fa fa-circle fa-stack-2x" style={{color: "Red"}} onClick={this.addCourse}></i>
-                                              <i class="fa fa-plus fa-stack-1x fa-inverse" onClick={this.addCourse}></i>
-                        </span>
-
+          <i class="fa fa-circle fa-stack-2x" style={{color: "Red"}} onClick={this.addCourse}></i>
+          <i class="fa fa-plus fa-stack-1x fa-inverse" onClick={this.addCourse}></i>
+        </span>
 
         <Route path="/courses/table">
           <CourseTable
@@ -120,7 +116,6 @@ constructor(props) {
         <Route path="/courses/editor"
                  render={(props) => <CourseEditor {...props}/>}>
         </Route>
-
       </div>
     )
   }

@@ -21,7 +21,6 @@ const CourseEditor = ({history}) =>
 
     <div class="row">
         <div class="col-sm-4">
-
             <div class="list-group">
                 <a href="#" class="list-group-item list-group-item-action active">
                     Module 1 - JQuery
@@ -52,8 +51,8 @@ const CourseEditor = ({history}) =>
                     <i class="float-right fa fa-times"></i>
                 </a>
             </div>
-
         </div>
+        
         <div class="col-sm-8">
             <ul class="nav nav-tabs" id="main-tab" role="tablist">
                 <li class="nav-item pl-4">
@@ -97,12 +96,15 @@ const CourseEditor = ({history}) =>
     </div>
 
     <br/>
+
     <div class="row">
         <div class="col-sm-4">
             <button class="btn btn-primary btn-block wbdv-login">New Module</button>
         </div>
     </div>
+
     <br/>
+
     <div class="row">
         <div class="col-sm-4">
             <button class="btn btn-primary btn-block wbdv-login">Delete Module</button>

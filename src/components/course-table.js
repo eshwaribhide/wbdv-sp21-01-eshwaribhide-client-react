@@ -13,19 +13,17 @@ export default class CourseTable
   render() {
     return(
       <div>
-
-
         <table className="table">
          <tr>
-                                        <th>Title</th>
-                                        <th class="d-none d-md-table-cell" scope="col">Owned By</th>
-                                        <th class="d-none d-lg-table-cell" scope="col">Last Modified</th>
-                                        <th><i className="fas fa-2x fa-folder"></i></th>
-                                        <th><i className="fas fa-2x fa-sort-alpha-down"></i></th>
-                                        <th><Link to="/courses/grid">
-                                         <i className="fas fa-2x fa-th"></i>
-                                         </Link></th>
-                                    </tr>
+            <th>Title</th>
+            <th class="d-none d-md-table-cell" scope="col">Owned By</th>
+            <th class="d-none d-lg-table-cell" scope="col">Last Modified</th>
+            <th><i className="fas fa-2x fa-folder"></i></th>
+            <th><i className="fas fa-2x fa-sort-alpha-down"></i></th>
+            <th><Link to="/courses/grid">
+              <i className="fas fa-2x fa-th"></i>
+              </Link></th>
+          </tr>
 
           <tbody>
           {

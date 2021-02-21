@@ -23,38 +23,34 @@ const CourseCard = (
     }
 
   return (
-  <div className="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
-      <div className="card">
-      <div className="card-body">
-      {
-                      !editing &&
-                      <Link to="/courses/editor">
-                          {title}
-                      </Link>
-                  }
-                  {
-                      editing &&
-                      <input
-                          onChange={(event) => setNewTitle(event.target.value)}
-                          value={newTitle}
-                          className="card-title"/>
-                  }
+    <div className="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+        <div className="card">
+        <div className="card-body">
+        {
+            !editing &&
 
-
-
-          <p className="card-text">Some description</p>
+            <Link to="/courses/editor" className="card-title">
+                {title}
+            </Link>
+        }
+        {
+            editing &&
+            <input
+                onChange={(event) => setNewTitle(event.target.value)}
+                value={newTitle}
+                className="form-control"
+                />
+        }
+            <p className="card-text">Some description</p>
 
             {editing && <i onClick={() => saveTitle()} className="fas fa-check" style={{color:"green"}}></i>}
             {editing && <i onClick={() => { setEditing(false); deleteCourse(course)}} className="fas fa-times" style={{color:"red"}}></i>}
             {!editing && <i onClick={() => setEditing(true)} className="fas fa-edit" style={{color:"blue"}}></i>}
 
-
-        </div>
-      </div>
+            </div>
+            </div>
     </div>
-
-
   )
 }
-export default CourseCard
 
+export default CourseCard
