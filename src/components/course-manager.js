@@ -98,9 +98,10 @@ constructor(props) {
 <br/>
         </div>
 
-        <span class="fa-stack fa-2x" style={{position: "absolute", bottom: "30px", right:"50px"}}>
+
+        <span class=" fa-stack fa-2x" style={{position: "absolute", bottom: "30px", right:"50px"}}>
                           <i class="fa fa-circle fa-stack-2x" style={{color: "Red"}} onClick={this.addCourse}></i>
-                                              <i class="fa fa-plus fa-stack-1x fa-inverse float" onClick={this.addCourse}></i>
+                                              <i class="fa fa-plus fa-stack-1x fa-inverse" onClick={this.addCourse}></i>
                         </span>
 
 
