@@ -6,6 +6,7 @@ import {combineReducers, createStore} from "redux";
 import {Provider} from "react-redux";
 import ModuleList from "./module-list";
 import LessonTabs from "./lesson-tabs";
+import TopicPills from "./topic-pills";
 
 const reducer = combineReducers({
     moduleReducer: moduleReducer,
@@ -29,6 +30,7 @@ const CourseEditor = ({history, params}) => {
             </div>
             <div className="col-9">
                 <LessonTabs/>
+                <TopicPills/>
             </div>
         </div>
     </Provider>)
