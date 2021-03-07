@@ -2,7 +2,6 @@ import React, {useEffect} from 'react'
 import {connect} from "react-redux";
 import EditableItem from "./editable-item";
 import {useParams} from "react-router-dom";
-import lessonService from '../services/lesson-service'
 import topicService from '../services/topic-service'
 
 const TopicPills = (
@@ -20,7 +19,6 @@ const TopicPills = (
     }) => {
     const {layout, courseId, moduleId, lessonId, topicId} = useParams();
     useEffect(() => {
-        refresh()
         if(lessonId !== "undefined" && typeof lessonId !== "undefined") {
             findTopicsForLesson(lessonId)
         }

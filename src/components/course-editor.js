@@ -35,6 +35,8 @@ const CourseEditor = ({history, params}) => {
                 <TopicPills/>
             </div>
         </div>
+
+
     </Provider>)
     }
 
