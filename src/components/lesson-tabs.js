@@ -15,10 +15,11 @@ const LessonTabs = (
         createLesson,
         updateLesson,
         deleteLesson,
+        refresh
     }) => {
     const {layout, courseId, moduleId, lessonId} = useParams();
     useEffect(() => {
-        console.log("LOAD LESSONS FOR MODULE: " + moduleId)
+        refresh()
         if(moduleId !== "undefined" && typeof moduleId !== "undefined") {
             findLessonsForModule(moduleId)
         }
@@ -49,14 +50,24 @@ const stpm = (state) => ({
     lessons: state.lessonReducer.lessons
 })
 const dtpm = (dispatch) => ({
+    refresh: () => {
+    const RESET_ACTION = {
+              type: "RESET"
+            }
+            dispatch(RESET_ACTION)
+    },
     findLessonsForModule: (moduleId) => {
         console.log("LOAD LESSONS FOR MODULE:")
         console.log(moduleId)
+
+
         lessonService.findLessonsForModule(moduleId)
             .then(lessons => dispatch({
                 type: "FIND_LESSONS",
                 lessons
             }))
+
+
     },
     createLesson: (moduleId) => {
         console.log("CREATE LESSON FOR MODULE: " + moduleId)

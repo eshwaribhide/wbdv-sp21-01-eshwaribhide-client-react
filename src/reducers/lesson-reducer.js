@@ -4,6 +4,8 @@ const initialState = {
 
 const lessonReducer = (state=initialState, action) => {
     switch (action.type) {
+        case "RESET":
+           return initialState
         case "CREATE_LESSON":
             return {
                 ...state,
