@@ -19,8 +19,8 @@ const CourseEditor = ({history, params}) => {
     return(
         <Provider store={store}>
       <h1>
-          <Link to="/courses/table">
-                          <i onClick={() => history.goBack()} className="fas fa-arrow-left"></i>
+          <Link to={`/courses/${layout}`}>
+                          <i className="fas fa-arrow-left"></i>
                       </Link>
       </h1>
         <div className="row">
