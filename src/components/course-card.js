@@ -28,7 +28,7 @@ const CourseCard = (
         <div className="card-body">
         {
             !editing &&
-            <Link to={`/courses/table/edit/${course._id}`} className="card-title">
+            <Link to={`/courses/grid/edit/${course._id}`} className="card-title" exact={true}>
                 {title}
             </Link>
         }

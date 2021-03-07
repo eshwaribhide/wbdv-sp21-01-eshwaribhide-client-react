@@ -1,34 +1,35 @@
 import React, {useEffect} from 'react'
-import {connect} from 'react-redux'
+import {connect, Provider} from "react-redux";
 import EditableItem from "./editable-item";
 import {useParams} from "react-router-dom";
+// import {findModulesForCourse, createModule} from "../services/module-service";
 import moduleService from "../services/module-service"
 
 const ModuleList = (
     {
-        myModules=[],
-        createModule=() => alert("Create Module 234"),
-        deleteModule=(item) => alert("delete " + item._id),
+        modules=[],
+        createModule,
         updateModule,
-        findModulesForCourse=(courseId) => console.log(courseId)
+        deleteModule,
+        findModulesForCourse
     }) => {
-    const {courseId, moduleId} = useParams();
+    const {layout, courseId, moduleId} = useParams();
     useEffect(() => {
-        // alert(courseId)
+        // console.log(courseId)
         findModulesForCourse(courseId)
     }, [])
-    return(
-    <div>
-        <h2>Modules</h2>
+    return(<div>
+        <h2>Module List</h2>
+
+
         <ul className="list-group">
             {
-                myModules.map(module =>
-                    <li className={`list-group-item ${module._id === moduleId ? 'active' : ''}`}>
+                modules.map(module =>
+                    <li className="list-group-item">
                         <EditableItem
-                            to={`/courses/editor/${courseId}/${module._id}`}
-                            updateItem={updateModule}
+                            to={`/courses/${layout}/edit/${courseId}/modules/${module._id}`}
                             deleteItem={deleteModule}
-                            active={true}
+                            updateItem={updateModule}
                             item={module}/>
                     </li>
                 )
@@ -39,42 +40,33 @@ const ModuleList = (
         </ul>
     </div>)}
 
-const stpm = (state) => {
-    return {
-        myModules: state.moduleReducer.modules
-    }
-}
-const dtpm = (dispatch) => {
-    return {
-        createModule: (courseId) => {
-            moduleService.createModuleForCourse(courseId, {title: "New Module"})
-                .then(theActualModule => dispatch({
-                    type: "CREATE_MODULE",
-                    module: theActualModule
-                }))
-        },
-        deleteModule: (item) =>
-            moduleService.deleteModule(item._id)
-                .then(status => dispatch({
-                    type: "DELETE_MODULE",
-                    moduleToDelete: item
-                })),
-        updateModule: (module) =>
-            moduleService.updateModule(module._id, module)
-                .then(status => dispatch({
-                    type: "UPDATE_MODULE",
-                    module
-                })),
-        findModulesForCourse: (courseId) => {
-            // alert(courseId);
-            moduleService.findModulesForCourse(courseId)
-                .then(theModules => dispatch({
-                    type: "FIND_MODULES_FOR_COURSE",
-                    modules: theModules
-                }))
-        }
-    }
-}
+const stpm = (state) => ({
+    modules: state.moduleReducer.modules
+})
+const dtpm = (dispatch) => ({
+    createModule: (courseId) => {
+        moduleService.createModule(courseId, {title: 'New Module'})
+            .then(module => dispatch({type: "CREATE_MODULE", module: module}))
 
-export default connect(stpm, dtpm)
-        (ModuleList)
+    },
+    updateModule: (module) =>
+                moduleService.updateModule(module._id, module)
+                    .then(status => dispatch({
+                        type: "UPDATE_MODULE",
+                        module
+                    })),
+    deleteModule: (moduleToDelete) => {
+        moduleService.deleteModule(moduleToDelete._id)
+            .then(status => dispatch({type: "DELETE_MODULE", moduleToDelete: moduleToDelete}))
+    },
+    findModulesForCourse: (courseId) => {
+        moduleService.findModulesForCourse(courseId)
+            .then(modules => dispatch({
+                type: "FIND_MODULES_FOR_COURSE",
+                modules: modules
+        }))
+    }
+})
+
+export default connect(stpm, dtpm)(ModuleList)
+

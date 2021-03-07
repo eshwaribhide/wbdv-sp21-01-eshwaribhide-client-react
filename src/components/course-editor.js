@@ -20,11 +20,8 @@ const CourseEditor = ({history, params}) => {
         <Provider store={store}>
       <h1>
           <Link to="/courses/table">
-            <i className="fas fa-arrow-left"></i>
-          </Link>
-          Course Editor
-          <i className="fas fa-times float-right"
-             onClick={() => history.goBack()}></i>
+                          <i onClick={() => history.goBack()} className="fas fa-arrow-left"></i>
+                      </Link>
       </h1>
         <div className="row">
             <div className="col-3">
