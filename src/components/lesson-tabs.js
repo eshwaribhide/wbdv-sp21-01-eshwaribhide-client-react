@@ -12,7 +12,9 @@ const LessonTabs = (
             {_id: "123", title: "Lesson C"}
         ],
         findLessonsForModule,
-        createLessonForModule
+        createLesson,
+        updateLesson,
+        deleteLesson,
     }) => {
     const {courseId, moduleId, lessonId} = useParams();
     useEffect(() => {
@@ -36,7 +38,7 @@ const LessonTabs = (
                 )
             }
             <li>
-                <i onClick={() => createLessonForModule(moduleId)} className="fas fa-plus"></i>
+                <i onClick={() => createLesson(moduleId)} className="fas fa-plus"></i>
             </li>
         </ul>
     </div>)}
@@ -54,15 +56,25 @@ const dtpm = (dispatch) => ({
                 lessons
             }))
     },
-    createLessonForModule: (moduleId) => {
+    createLesson: (moduleId) => {
         console.log("CREATE LESSON FOR MODULE: " + moduleId)
         lessonService
-            .createLessonForModule(moduleId, {title: "New Lesson"})
+            .createLesson(moduleId, {title: "New Lesson"})
             .then(lesson => dispatch({
                 type: "CREATE_LESSON",
                 lesson
             }))
-    }
+    },
+     updateLesson: (lesson) =>
+                    lessonService.updateLesson(lesson._id, lesson)
+                        .then(status => dispatch({
+                            type: "UPDATE_LESSON",
+                            lesson
+                        })),
+        deleteLesson: (lessonToDelete) => {
+            lessonService.deleteLesson(lessonToDelete._id)
+                .then(status => dispatch({type: "DELETE_LESSON", lessonToDelete: lessonToDelete}))
+        },
 })
 
 export default connect(stpm, dtpm)(LessonTabs)
