@@ -48,7 +48,7 @@ const dtpm = (dispatch) => ({
     createModule: (courseId) => moduleActions.createModule(dispatch, courseId),
     updateModule: (newItem) => moduleActions.updateModule(dispatch, newItem),
     deleteModule: (moduleToDelete) => moduleActions.deleteModule(dispatch, moduleToDelete),
-    findModulesForCourse: (courseId) => moduleActions.findModulesForCourse(dispatch, courseId)
+    findModulesForCourse: (courseId) => moduleActions.findModulesForCourse(dispatch, courseId),
 })
 
 export default connect(stpm, dtpm)(ModuleList)

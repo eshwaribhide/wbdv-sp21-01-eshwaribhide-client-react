@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import EditableItem from "./editable-item";
 import {useParams} from "react-router-dom";
 import lessonService from '../../services/lesson-service'
+import lessonActions from "../actions/lesson-actions";
 
 const LessonTabs = (
     {
@@ -50,44 +51,11 @@ const stpm = (state) => ({
     lessons: state.lessonReducer.lessons
 })
 const dtpm = (dispatch) => ({
-    refresh: () => {
-    const RESET_ACTION = {
-              type: "RESET"
-            }
-            dispatch(RESET_ACTION)
-    },
-    findLessonsForModule: (moduleId) => {
-        console.log("LOAD LESSONS FOR MODULE:")
-        console.log(moduleId)
-
-
-        lessonService.findLessonsForModule(moduleId)
-            .then(lessons => dispatch({
-                type: "FIND_LESSONS",
-                lessons
-            }))
-
-
-    },
-    createLesson: (moduleId) => {
-        console.log("CREATE LESSON FOR MODULE: " + moduleId)
-        lessonService
-            .createLesson(moduleId, {title: "New Lesson"})
-            .then(lesson => dispatch({
-                type: "CREATE_LESSON",
-                lesson
-            }))
-    },
-     updateLesson: (lesson) =>
-                    lessonService.updateLesson(lesson._id, lesson)
-                        .then(status => dispatch({
-                            type: "UPDATE_LESSON",
-                            lesson
-                        })),
-        deleteLesson: (lessonToDelete) => {
-            lessonService.deleteLesson(lessonToDelete._id)
-                .then(status => dispatch({type: "DELETE_LESSON", lessonToDelete: lessonToDelete}))
-        },
+    refresh: () => lessonActions.refresh(dispatch),
+    findLessonsForModule: (moduleId) => lessonActions.findLessonsForModule(dispatch, moduleId),
+    createLesson: (moduleId) => lessonActions.createLesson(dispatch, moduleId),
+    updateLesson: (lesson) => lessonActions.updateLesson(dispatch, lesson),
+    deleteLesson: (lessonToDelete) => lessonActions.deleteLesson(dispatch, lessonToDelete),
 })
 
 export default connect(stpm, dtpm)(LessonTabs)
