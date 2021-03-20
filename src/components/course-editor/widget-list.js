@@ -10,48 +10,13 @@ const WidgetList = (
         createWidgetForTopic,
         updateWidget,
         deleteWidget,
-        updateWidget
+        findWidgetsForTopic
     }) => {
     const {topicId} = useParams();
     const [editingWidget, setEditingWidget] = useState({});
     useEffect(() => {
-        // TODO: move server communication to widget-service.js
-        // fetch("http://localhost:8080/api/widgets")
-        fetch(`http://localhost:8080/api/topics/${topicId}/widgets`)
-            .then(response => response.json())
-            .then(widgets => setWidgets(widgets))
+        findWidgetsForTopic(topicId)
     }, [topicId])
-    const createWidgetForTopic = () => {
-        // TODO: move server communication to widget-service.js
-        fetch(`http://localhost:8080/api/topics/${topicId}/widgets`, {
-            method: "POST",
-            body: JSON.stringify({type: "HEADING", size: 1, text: "New Widget"}),
-            headers: {
-                'content-type': 'application/json'
-            }
-        })
-            .then(response => response.json())
-            .then(actualWidget => {
-                setWidgets(widgets => ([...widgets, actualWidget]))
-            })
-    }
-    const deleteWidget = (wid) =>
-        fetch(`http://localhost:8080/api/widgets/${wid}`, {
-            method: "DELETE",
-        }).then(response => {
-            setWidgets((widgets) => widgets.filter(w => w.id !== wid))
-        })
-    const updateWidget = (wid, widget) =>
-        fetch(`http://localhost:8080/api/widgets/${wid}`, {
-            method: "PUT",
-            body: JSON.stringify(widget),
-            headers: {
-                'content-type': 'application/json'
-            }
-        }).then(response => {
-            setWidgets((widgets) => widgets.map(w => w.id !== wid ? w : widget))
-            setEditingWidget({})
-        })
 
     return(
         <div>
@@ -106,4 +71,4 @@ const dtpm = (dispatch) => ({
 })
 
 
-export default WidgetList;
+export default connect(stpm, dtpm)(WidgetList)
