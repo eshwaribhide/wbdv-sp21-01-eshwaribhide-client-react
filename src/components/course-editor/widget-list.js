@@ -2,11 +2,17 @@ import React, {useState, useEffect} from 'react'
 import HeadingWidget from "./heading-widget";
 import ParagraphWidget from "./paragraph-widget";
 import {useParams} from "react-router-dom";
+import widgetActions from "../actions/widget-actions";
 
-const WidgetList = () => {
-    // TODO: move state management to widgets-reducer.js
+const WidgetList = (
+    {
+        widgets=[],
+        createWidgetForTopic,
+        updateWidget,
+        deleteWidget,
+        updateWidget
+    }) => {
     const {topicId} = useParams();
-    const [widgets, setWidgets] = useState([])
     const [editingWidget, setEditingWidget] = useState({});
     useEffect(() => {
         // TODO: move server communication to widget-service.js
@@ -88,4 +94,16 @@ const WidgetList = () => {
         </div>
     )
 }
+
+const stpm = (state) => ({
+    widgets: state.widgetReducer.widgets
+})
+const dtpm = (dispatch) => ({
+    createModule: (courseId) => widgetActions.createModule(dispatch, courseId),
+    updateModule: (newItem) => widgetActions.updateModule(dispatch, newItem),
+    deleteModule: (widgetToDelete) => widgetActions.deleteModule(dispatch, widgetToDelete),
+    findModulesForCourse: (courseId) => widgetActions.findModulesForCourse(dispatch, courseId),
+})
+
+
 export default WidgetList;
