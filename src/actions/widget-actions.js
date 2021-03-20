@@ -13,7 +13,6 @@ export const createWidget = (dispatch, topicId) => {
 export const updateWidget = (dispatch, newItem) => {
 
     widgetService.updateWidget(newItem.id, newItem)
-
         .then(status => dispatch({type: UPDATE_WIDGET, updateWidget: newItem}))
 }
 

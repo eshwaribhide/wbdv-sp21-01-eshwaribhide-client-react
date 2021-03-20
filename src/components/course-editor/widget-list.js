@@ -13,7 +13,7 @@ const WidgetList = (
         deleteWidget,
         findWidgetsForTopic
     }) => {
-    const {topicId} = '6044501163561d001713debb'
+    const {topicId} = useParams()
     const [widget, setWidget] = useState({})
     useEffect(() => {
         findWidgetsForTopic(topicId)
@@ -28,9 +28,11 @@ const WidgetList = (
                                 widgets && widgets.map(_widget =>
                                     <li key={_widget.id} className="list-group-item">
                                         {
+
                                             _widget.id === widget.id &&
                                                 <>
-                                                    <i onClick={() => deleteWidget(_widget.id)} className="fas fa-trash float-right"></i>
+
+                                                    <i onClick={() => deleteWidget(_widget)} className="fas fa-trash float-right"></i>
                                                     <i onClick={() => {
                                                     setWidget({})
 
