@@ -1,61 +1,66 @@
 import React, {useState, useEffect} from 'react'
+import {connect} from "react-redux";
 import HeadingWidget from "./heading-widget";
 import ParagraphWidget from "./paragraph-widget";
 import {useParams} from "react-router-dom";
-import widgetActions from "../actions/widget-actions";
+import widgetActions from "../../actions/widget-actions";
 
 const WidgetList = (
     {
         widgets=[],
-        createWidgetForTopic,
+        createWidget,
         updateWidget,
         deleteWidget,
         findWidgetsForTopic
     }) => {
-    const {topicId} = useParams();
-    const [editingWidget, setEditingWidget] = useState({});
+    const {topicId} = '6044501163561d001713debb'
+    const [widget, setWidget] = useState({})
     useEffect(() => {
         findWidgetsForTopic(topicId)
     }, [topicId])
 
     return(
         <div>
-            <i onClick={createWidgetForTopic} className="fas fa-plus fa-2x float-right"></i>
-            <h2>Widget List ({widgets.length}) {editingWidget.id}</h2>
+            <i onClick={() => createWidget(topicId)} className="fas fa-plus fa-2x float-right"></i>
+            <h2>Widget List </h2>
             <ul className="list-group">
-                {
-                    widgets.map(widget =>
-                    <li className="list-group-item" key={widget.id}>
-                        {
-                            editingWidget.id === widget.id &&
-                                <>
-                                    <i onClick={() => {
-                                        updateWidget(widget.id, editingWidget)
-                                    }} className="fas fa-2x fa-check float-right"></i>
-                                    <i onClick={() => deleteWidget(widget.id)} className="fas fa-2x fa-trash float-right"></i>
-                                </>
-                        }
-                        {
-                            editingWidget.id !== widget.id &&
-                            <i onClick={() => setEditingWidget(widget)} className="fas fa-2x fa-cog float-right"></i>
-                        }
-                        {
-                            widget.type === "HEADING" &&
-                            <HeadingWidget
-                                editing={editingWidget.id === widget.id}
-                                widget={widget}/>
-                        }
-                        {
-                            widget.type === "PARAGRAPH" &&
-                            <ParagraphWidget
-                                editing={editingWidget.id === widget.id}
-                                widget={widget}/>
-                        }
-                    </li>
-                    )
-                }
-            </ul>
-            {JSON.stringify(widgets)}
+                            {
+                                widgets && widgets.map(_widget =>
+                                    <li key={_widget.id} className="list-group-item">
+                                        {
+                                            _widget.id === widget.id &&
+                                                <>
+                                                    <i onClick={() => deleteWidget(_widget.id)} className="fas fa-trash float-right"></i>
+                                                    <i onClick={() => {
+                                                    setWidget({})
+
+                                                        updateWidget(widget)
+
+                                                    }} className="fas fa-check float-right"></i>
+                                                </>
+                                        }
+                                        {
+                                            _widget.id !== widget.id &&
+                                            <i onClick={() => setWidget(_widget)} className="fas fa-cog float-right"></i>
+                                        }
+                                        {
+                                            _widget.type === "HEADING" &&
+                                            <HeadingWidget
+                                                setWidget={setWidget}
+                                                editing={_widget.id === widget.id}
+                                                widget={widget}/>
+                                        }
+                                        {
+                                            _widget.type === "PARAGRAPH" &&
+                                            <ParagraphWidget
+                                                setWidget={setWidget}
+                                                editing={_widget.id === widget.id}
+                                                widget={_widget}/>
+                                        }
+                                    </li>
+                                )
+                            }
+                        </ul>
         </div>
     )
 }
@@ -64,10 +69,10 @@ const stpm = (state) => ({
     widgets: state.widgetReducer.widgets
 })
 const dtpm = (dispatch) => ({
-    createModule: (courseId) => widgetActions.createModule(dispatch, courseId),
-    updateModule: (newItem) => widgetActions.updateModule(dispatch, newItem),
-    deleteModule: (widgetToDelete) => widgetActions.deleteModule(dispatch, widgetToDelete),
-    findModulesForCourse: (courseId) => widgetActions.findModulesForCourse(dispatch, courseId),
+    createWidget: (topicId) => widgetActions.createWidget(dispatch, topicId),
+    updateWidget: (newItem) => widgetActions.updateWidget(dispatch, newItem),
+    deleteWidget: (widgetToDelete) => widgetActions.deleteWidget(dispatch, widgetToDelete),
+    findWidgetsForTopic: (topicId) => widgetActions.findWidgetsForTopic(dispatch, topicId),
 })
 
 

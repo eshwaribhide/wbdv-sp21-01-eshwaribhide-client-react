@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import EditableItem from "./editable-item";
 import {useParams} from "react-router-dom";
 import lessonService from '../../services/lesson-service'
-import lessonActions from "../actions/lesson-actions";
+import lessonActions from "../../actions/lesson-actions";
 
 const LessonTabs = (
     {

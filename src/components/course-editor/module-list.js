@@ -2,7 +2,7 @@ import React, {useEffect} from 'react'
 import {connect, Provider} from "react-redux";
 import EditableItem from "./editable-item";
 import {useParams} from "react-router-dom";
-import moduleActions from "../actions/module-actions";
+import moduleActions from "../../actions/module-actions";
 
 const ModuleList = (
     {

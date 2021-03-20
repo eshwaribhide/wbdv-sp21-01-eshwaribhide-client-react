@@ -4,19 +4,19 @@ export const RESET = "RESET"
 export const CREATE_LESSON = "CREATE_LESSON"
 export const UPDATE_LESSON = "UPDATE_LESSON"
 export const DELETE_LESSON = "DELETE_LESSON"
-export const FIND_LESSONS_FOR_COURSE = "FIND_LESSONS_FOR_COURSE"
+export const FIND_LESSONS = "FIND_LESSONS"
 
 
 
 
-refresh: (dispatch) => {
+export const refresh = (dispatch) => {
     const RESET_ACTION = {
               type: RESET
             }
             dispatch(RESET_ACTION)
 }
 
-findLessonsForModule: (dispatch, moduleId) => {
+export const findLessonsForModule = (dispatch, moduleId) => {
     console.log("LOAD LESSONS FOR MODULE:")
     console.log(moduleId)
 
@@ -28,7 +28,7 @@ findLessonsForModule: (dispatch, moduleId) => {
         }))
 }
 
-createLesson: (dispatch, moduleId) => {
+export const createLesson = (dispatch, moduleId) => {
     console.log("CREATE LESSON FOR MODULE: " + moduleId)
     lessonService
         .createLesson(moduleId, {title: "New Lesson"})
@@ -38,20 +38,20 @@ createLesson: (dispatch, moduleId) => {
         }))
 }
 
-updateLesson: (dispatch, lesson) =>
+export const updateLesson = (dispatch, lesson) =>
             lessonService.updateLesson(lesson._id, lesson)
                 .then(status => dispatch({
                     type: UPDATE_LESSON,
                     lesson
                 }))
 
-deleteLesson: (dispatch, lessonToDelete) => {
+export const deleteLesson = (dispatch, lessonToDelete) => {
     lessonService.deleteLesson(lessonToDelete._id)
         .then(status => dispatch({type: DELETE_LESSON, lessonToDelete: lessonToDelete}))
 }
 
 const lessonActions = {
-    createlesson, findLessonsForModule, updateLesson, deleteLesson
+    createLesson, findLessonsForModule, updateLesson, deleteLesson, refresh
 }
 
 export default lessonActions
