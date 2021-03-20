@@ -25,6 +25,11 @@ const HeadingWidget = (
         {
             editing &&
             <div>
+            <select onChange={(e) => setCachedItem({...cachedItem, type: e.target.value})} value={cachedItem.type} className="form-control">
+                                                <option value={"HEADING"}>Heading</option>
+                                                <option value={"PARAGRAPH"}>Paragraph</option>
+
+             </select>
                 <input onChange={(e) => setCachedItem({...cachedItem, text: e.target.value})} value={cachedItem.text} className="form-control"/>
                 <select onChange={(e) => setCachedItem({...cachedItem, size: parseInt(e.target.value)})} value={cachedItem.size} className="form-control">
                     <option value={1}>Heading 1</option>
@@ -34,7 +39,8 @@ const HeadingWidget = (
                     <option value={5}>Heading 5</option>
                     <option value={6}>Heading 6</option>
                 </select>
-            <i onClick={() => {setEditing(false); updateWidget(cachedItem.id, cachedItem)}} className="fas fa-check float-right"></i>
+
+            <i onClick={() => {setEditing(false); updateWidget(cachedItem)}} className="fas fa-check float-right"></i>
             <i onClick={() => {setEditing(false); deleteWidget(widget)}} className="fas fa-times float-right"></i>
             </div>
         }
