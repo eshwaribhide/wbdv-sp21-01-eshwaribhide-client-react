@@ -14,7 +14,6 @@ const WidgetList = (
         findWidgetsForTopic
     }) => {
     const {topicId} = useParams()
-    const [widget, setWidget] = useState({})
     useEffect(() => {
         findWidgetsForTopic(topicId)
     }, [topicId])
@@ -28,41 +27,19 @@ const WidgetList = (
 
                                 widgets && widgets.map(_widget =>
                                     <li key={_widget.id} className="list-group-item">
-                                        {
 
-                                            _widget.id === widget.id &&
-                                                <>
-
-
-                                                    <i onClick={() => deleteWidget(_widget)} className="fas fa-trash float-right"></i>
-                                                    <i onClick={() => {
-                                                    setWidget({})
-
-                                                        updateWidget(widget)
-
-                                                    }} className="fas fa-check float-right"></i>
-                                                </>
-                                        }
-
-
-
-                                        {
-                                            _widget.id !== widget.id &&
-
-                                            <i onClick={() => setWidget(_widget)} className="fas fa-cog float-right"></i>
-                                        }
                                         {
                                             _widget.type === "HEADING" &&
                                             <HeadingWidget
-                                                setWidget={setWidget}
-                                                editing={_widget.id === widget.id}
-                                                widget={widget}/>
+                                                updateWidget={updateWidget}
+                                                deleteWidget={deleteWidget}
+                                                widget={_widget}/>
                                         }
                                         {
                                             _widget.type === "PARAGRAPH" &&
                                             <ParagraphWidget
-                                                setWidget={setWidget}
-                                                editing={_widget.id === widget.id}
+                                                updateWidget={updateWidget}
+                                                deleteWidget={deleteWidget}
                                                 widget={_widget}/>
                                         }
                                     </li>
