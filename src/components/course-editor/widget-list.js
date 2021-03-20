@@ -25,12 +25,14 @@ const WidgetList = (
             <h2>Widget List </h2>
             <ul className="list-group">
                             {
+
                                 widgets && widgets.map(_widget =>
                                     <li key={_widget.id} className="list-group-item">
                                         {
 
                                             _widget.id === widget.id &&
                                                 <>
+
 
                                                     <i onClick={() => deleteWidget(_widget)} className="fas fa-trash float-right"></i>
                                                     <i onClick={() => {
@@ -41,8 +43,12 @@ const WidgetList = (
                                                     }} className="fas fa-check float-right"></i>
                                                 </>
                                         }
+
+
+
                                         {
                                             _widget.id !== widget.id &&
+
                                             <i onClick={() => setWidget(_widget)} className="fas fa-cog float-right"></i>
                                         }
                                         {
