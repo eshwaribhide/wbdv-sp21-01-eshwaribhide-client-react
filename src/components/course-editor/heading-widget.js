@@ -29,6 +29,7 @@ const HeadingWidget = (
                                                 <option value={"HEADING"}>Heading</option>
                                                 <option value={"PARAGRAPH"}>Paragraph</option>
                                                 <option value={"LIST"}>List</option>
+                                                <option value={"IMAGE"}>Image</option>
 
              </select>
                 <input onChange={(e) => setCachedItem({...cachedItem, text: e.target.value})} value={cachedItem.text} className="form-control"/>

@@ -67,6 +67,7 @@ const [editing, setEditing] = useState(false)
                                                                               <option value={"HEADING"}>Heading</option>
                                                                               <option value={"PARAGRAPH"}>Paragraph</option>
                                                                               <option value={"LIST"}>List</option>
+                                                                              <option value={"IMAGE"}>Image</option>
 
                      </select>
                      <i onClick={() => {setEditing(false); updateWidget(cachedItem)}} className="fas fa-check float-right"></i>
