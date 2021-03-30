@@ -54,7 +54,9 @@ const [editing, setEditing] = useState(false)
                      Ordered
 
                      <br/>
+
                      List Items
+
                      <textarea
                      rows={10}
                      onChange={(e) => setCachedItem({...cachedItem, text: e.target.value})}
