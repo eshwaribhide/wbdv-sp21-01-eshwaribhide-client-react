@@ -2,33 +2,45 @@ import React, {useState} from "react";
 
 const TrueFalseQuestion = ({question}) => {
     const [answer, setAnswer] = useState(null)
+    const [graded, setGraded] = useState(false)
     return (
-        <div>
-            <h4>
-                {question.question}
+                <>
+                <h4>
+                    {question.question}
                 {
-                    answer == question.correct &&
+                    graded && JSON.stringify(answer) == question.correct &&
                     <i className="fas fa-check"></i>
                 }
                 {
-                    answer != question.correct &&
+                    graded && JSON.stringify(answer) != question.correct &&
                     <i className="fas fa-times"></i>
                 }
-            </h4>
-            {question.correct}
+                </h4>
+                <div class="col-3">
+                <ul className="list-group">
+                    <li className="list-group-item">
+                    <label><input
+                                    type="radio"
+                                    onClick={() => setAnswer(true)}
+                                    name={question._id}/>True</label>
+                     </li>
+                     <li className="list-group-item">
+                    <label><input
+                        type="radio"
+                        onClick={() => setAnswer(false)}
+                        name={question._id}/>False</label>
+                    </li>
+                </ul>
+                </div>
+                <br/>
+            <button onClick={() => setGraded(true)} style={{backgroundColor: "green", borderRadius: "5px"}}>
+              Grade
+            </button>
             <br/>
-            {JSON.stringify(answer)}
             <br/>
-            <label><input
-                type="radio"
-                onClick={() => setAnswer(true)}
-                name={question._id}/>True</label>
-            <br/>
-            <label><input
-                type="radio"
-                onClick={() => setAnswer(false)}
-                name={question._id}/>False</label>
-        </div>
+            </>
+
+
     )
 }
 
