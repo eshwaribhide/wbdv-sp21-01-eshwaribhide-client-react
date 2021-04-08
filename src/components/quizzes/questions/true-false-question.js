@@ -84,7 +84,7 @@ const TrueFalseQuestion = ({question}) => {
                              </>
                             }
 
-                            {isAnswerCorrect != null && !isAnswerCorrect && answer &&
+                            {isAnswerCorrect != null && !isAnswerCorrect && question.correct &&
                              <>
                                  <li className="list-group-item list-group-item-success">
                                      <label>
@@ -108,7 +108,7 @@ const TrueFalseQuestion = ({question}) => {
                              </>
                              }
 
-                             {isAnswerCorrect != null && !isAnswerCorrect && !answer &&
+                             {isAnswerCorrect != null && !isAnswerCorrect && !question.correct &&
                              <>
                                  <li className="list-group-item list-group-item-danger">
                                     <label>
