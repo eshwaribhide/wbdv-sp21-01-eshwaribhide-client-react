@@ -84,13 +84,12 @@ const TrueFalseQuestion = ({question}) => {
                              </>
                             }
 
-                            {isAnswerCorrect != null && !isAnswerCorrect && question.correct &&
+                            {isAnswerCorrect != null && !isAnswerCorrect && !answer &&
                              <>
                                  <li className="list-group-item list-group-item-success">
                                      <label>
                                         <input
                                              type="radio"
-                                             checked
                                              onClick={() => setAnswer(true)}
                                              name={question._id}/>True
                                              <i className="fas fa-check" style={{color:"green"}}></i>
@@ -100,6 +99,7 @@ const TrueFalseQuestion = ({question}) => {
                                     <label>
                                         <input
                                                type="radio"
+                                               checked
                                                onClick={() => setAnswer(false)}
                                                name={question._id}/>False
                                                <i className="fas fa-times" style={{color:"red"}}></i>
@@ -108,12 +108,13 @@ const TrueFalseQuestion = ({question}) => {
                              </>
                              }
 
-                             {isAnswerCorrect != null && !isAnswerCorrect && !question.correct &&
+                             {isAnswerCorrect != null && !isAnswerCorrect && answer &&
                              <>
                                  <li className="list-group-item list-group-item-danger">
                                     <label>
                                         <input
                                              type="radio"
+                                             checked
                                              onClick={() => setAnswer(true)}
                                              name={question._id}/>True
                                              <i className="fas fa-times" style={{color:"red"}}></i>
@@ -123,7 +124,6 @@ const TrueFalseQuestion = ({question}) => {
                                     <label>
                                         <input
                                              type="radio"
-                                             checked
                                              onClick={() => setAnswer(false)}
                                              name={question._id}/>False
                                              <i className="fas fa-check" style={{color:"green"}}></i>

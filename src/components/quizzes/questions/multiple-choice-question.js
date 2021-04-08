@@ -39,6 +39,22 @@ const MultipleChoiceQuestion = ({question}) => {
                 {isAnswerCorrect != null && isAnswerCorrect &&
                 question.choices.map((choice) => {
                     if (choice === question.correct) {
+                        if (choice == answer) {
+                        return <>
+                                   <li className="list-group-item list-group-item-success">
+                                       <label>
+                                           <input type="radio"
+                                           onClick={() => setAnswer(choice)}
+                                           checked
+                                           name={question._id}/>
+                                           {choice}
+                                           <i className="fas fa-check" style={{color:"green"}}></i>
+                                           <br/>
+                                       </label>
+                                   </li>
+                               </>
+                        }
+                        else {
                         return <>
                                    <li className="list-group-item list-group-item-success">
                                        <label>
@@ -51,18 +67,36 @@ const MultipleChoiceQuestion = ({question}) => {
                                        </label>
                                    </li>
                                </>
+                        }
                     } else {
+                        if (choice == answer) {
                         return <>
                                    <li className="list-group-item">
                                        <label>
                                            <input type="radio"
                                            onClick={() => setAnswer(choice)}
+                                           checked
                                            name={question._id}/>
                                            {choice}
                                            <br/>
                                        </label>
                                    </li>
                                </>
+                        }
+                        else {
+                        return <>
+                           <li className="list-group-item">
+                               <label>
+                                   <input type="radio"
+                                   onClick={() => setAnswer(choice)}
+
+                                   name={question._id}/>
+                                   {choice}
+                                   <br/>
+                               </label>
+                           </li>
+                       </>
+                        }
                     }
                 })}
 
@@ -71,11 +105,13 @@ const MultipleChoiceQuestion = ({question}) => {
                 question.choices.map((choice) => {
 
                     if (choice === question.correct) {
+                        if (choice == answer) {
                         return <>
                                    <li className="list-group-item list-group-item-success">
                                        <label>
                                            <input type="radio"
                                            onClick={() => setAnswer(choice)}
+                                           checked
                                            name={question._id}/>
                                            {choice}
                                            <i className="fas fa-check" style={{color:"green"}}></i>
@@ -83,7 +119,38 @@ const MultipleChoiceQuestion = ({question}) => {
                                        </label>
                                    </li>
                                </>
+                        }
+                        else {
+                        return <>
+                                                           <li className="list-group-item list-group-item-success">
+                                                               <label>
+                                                                   <input type="radio"
+                                                                   onClick={() => setAnswer(choice)}
+                                                                   name={question._id}/>
+                                                                   {choice}
+                                                                   <i className="fas fa-check" style={{color:"green"}}></i>
+                                                                   <br/>
+                                                               </label>
+                                                           </li>
+                                                       </>
+                        }
                     } else {
+                        if (choice == answer) {
+                        return <>
+                                                           <li className="list-group-item list-group-item-danger">
+                                                               <label>
+                                                                   <input type="radio"
+                                                                   onClick={() => setAnswer(choice)}
+                                                                   checked
+                                                                   name={question._id}/>
+                                                                   {choice}
+                                                                   <i className="fas fa-times" style={{color:"red"}}></i>
+                                                                   <br/>
+                                                               </label>
+                                                           </li>
+                                                       </>
+                        }
+                        else {
                         return <>
                                    <li className="list-group-item list-group-item-danger">
                                        <label>
@@ -96,6 +163,7 @@ const MultipleChoiceQuestion = ({question}) => {
                                        </label>
                                    </li>
                                </>
+                    }
                     }
                 })}
 
