@@ -152,13 +152,12 @@ const MultipleChoiceQuestion = ({question}) => {
                         }
                         else {
                         return <>
-                                   <li className="list-group-item list-group-item-danger">
+                                   <li className="list-group-item">
                                        <label>
                                            <input type="radio"
                                            onClick={() => setAnswer(choice)}
                                            name={question._id}/>
                                            {choice}
-                                           <i className="fas fa-times" style={{color:"red"}}></i>
                                            <br/>
                                        </label>
                                    </li>
