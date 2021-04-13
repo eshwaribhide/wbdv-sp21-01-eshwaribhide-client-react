@@ -2,7 +2,7 @@ import CourseManager from "./components/course-manager/course-manager";
 import CourseEditor from "./components/course-editor/course-editor";
 import {BrowserRouter, Route} from "react-router-dom";
 import Home from "./components/home"
-import QuizzesList from "./components/quizzes/quizzes-list";
+import Quizzes from "./components/quizzes/quizzes";
 import Quiz from "./components/quizzes/quiz";
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
           <Route path="/" exact={true}  component={Home}/>
           <Route path="/courses" component={CourseManager}/>
           <Route path="/courses/:courseId/quizzes" exact={true}>
-            <QuizzesList/>
+            <Quizzes/>
         </Route>
         <Route path="/courses/:courseId/quizzes/:quizId" exact={true}>
             <Quiz/>
