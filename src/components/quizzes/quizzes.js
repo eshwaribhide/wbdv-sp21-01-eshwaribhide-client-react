@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import {Link, useParams} from "react-router-dom";
 import quizService from "../../services/quiz-service";
 
-const QuizzesList = () => {
+const Quizzes = () => {
     const {courseId} = useParams();
     const [quizzes, setQuizzes] = useState([])
     useEffect(() => {
@@ -39,4 +39,4 @@ const QuizzesList = () => {
     )
 }
 
-export default QuizzesList;
+export default Quizzes;
