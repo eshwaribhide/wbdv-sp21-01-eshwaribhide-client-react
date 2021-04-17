@@ -134,7 +134,6 @@ const TrueFalseQuestion = ({question}) => {
 
                         </ul>
                     </div>
-                    <br/>
             </>
 
 

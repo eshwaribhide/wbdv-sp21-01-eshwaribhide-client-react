@@ -25,7 +25,7 @@ const Quizzes = () => {
                             </Link>
                             <Link
                                 to={`/courses/${courseId}/quizzes/${quiz._id}`}>
-                                <button style={{backgroundColor: "blue", borderRadius: "5px", height: "25px", width: "50px", float: "right"}}>
+                                <button class= 'btn btn-primary' style={{float: "right"}}>
                                     Start
                                 </button>
                             </Link>

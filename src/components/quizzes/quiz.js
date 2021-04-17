@@ -15,7 +15,7 @@ const Quiz = () => {
 
     return(
         <div>
-            <h2>Quiz {quizId}</h2>
+            <h2>Quiz {quizId} (see attempts at bottom)</h2>
             <ul>
                 {
                     questions.map(question =>
@@ -25,9 +25,12 @@ const Quiz = () => {
                     )
                 }
             </ul>
-            <button onClick={() => quizService.submitQuiz(quizId, questions).then(result => {setAttempts([...attempts, result.score])})} style={{backgroundColor: "green", borderRadius: "5px"}}>
+            <div class="col-sm-3">
+            <button class='btn btn-success btn-block' onClick={() => quizService.submitQuiz(quizId, questions).then(result => {setAttempts([...attempts, result.score])})} style={{backgroundColor: "green", borderRadius: "5px"}}>
                 Submit
             </button>
+            </div>
+            <br/>
         <h1>Attempts</h1>
         <ul>
         {
