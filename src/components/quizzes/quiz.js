@@ -7,6 +7,7 @@ import quizService from "../../services/quiz-service";
 const Quiz = () => {
     const {courseId, quizId} = useParams();
     const [questions, setQuestions] = useState([]);
+    const [attempts, setAttempts] = useState([]);
     useEffect(() => {
        questionsService.findAllQuestions(quizId)
             .then(questions => setQuestions(questions))
@@ -24,10 +25,21 @@ const Quiz = () => {
                     )
                 }
             </ul>
-            <button onClick={() => quizService.submitQuiz(quizId, questions)} style={{backgroundColor: "green", borderRadius: "5px"}}>
+            <button onClick={() => quizService.submitQuiz(quizId, questions).then(result => {setAttempts([...attempts, result.score])})} style={{backgroundColor: "green", borderRadius: "5px"}}>
                 Submit
             </button>
+        <h1>Attempts</h1>
+        <ul>
+        {
+                            attempts.map(attempt =>
+                            <li>
+                                Score: {attempt}
+                            </li>
+                            )
+                        }
+                    </ul>
         </div>
+
     );
 }
 

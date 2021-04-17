@@ -2,7 +2,7 @@ export const findAllQuizzes = (quizId) =>
     fetch("http://localhost:3000/api/quizzes")
                 .then(response => response.json())
 
-export const submitQuiz = (quizId, questions) => {
+export const submitQuiz = (quizId, questions) =>
  fetch(`http://localhost:3000/api/quizzes/${quizId}/attempts`, {
    method: 'POST',
    body: JSON.stringify(questions),
@@ -10,7 +10,6 @@ export const submitQuiz = (quizId, questions) => {
      'content-type': 'application/json'
    }
  }).then(response => response.json())
-   .then(result => console.log('result', result))
-}
+
 
 export default {findAllQuizzes, submitQuiz}
