@@ -24,7 +24,7 @@ const TrueFalseQuestion = ({question}) => {
                                     <label>
                                         <input
                                             type="radio"
-                                            onClick={() => setAnswer(true)}
+                                            onClick={() => {setAnswer(true); question.answer=JSON.stringify(true);}}
                                             name={question._id}/>True
                                      </label>
                                 </li>
@@ -32,7 +32,7 @@ const TrueFalseQuestion = ({question}) => {
                                     <label>
                                         <input
                                               type="radio"
-                                              onClick={() => setAnswer(false)}
+                                              onClick={() => {setAnswer(false); question.answer=JSON.stringify(false);}}
                                               name={question._id}/>False</label>
                                 </li>
                             </>
@@ -45,7 +45,7 @@ const TrueFalseQuestion = ({question}) => {
                                         <input
                                             type="radio"
                                             checked
-                                            onClick={() => setAnswer(true)}
+                                            onClick={() => {setAnswer(true); question.answer=JSON.stringify(true);}}
                                             name={question._id}/>True
                                             <i className="fas fa-check" style={{color:"green"}}></i>
                                     </label>
@@ -54,7 +54,7 @@ const TrueFalseQuestion = ({question}) => {
                                     <label>
                                         <input
                                           type="radio"
-                                          onClick={() => setAnswer(false)}
+                                          onClick={() => {setAnswer(false); question.answer=JSON.stringify(false);}}
                                           name={question._id}/>False
                                     </label>
                                 </li>
@@ -67,7 +67,7 @@ const TrueFalseQuestion = ({question}) => {
                                     <label>
                                         <input
                                             type="radio"
-                                            onClick={() => setAnswer(true)}
+                                            onClick={() => {setAnswer(true); question.answer=JSON.stringify(true);}}
                                             name={question._id}/>True
                                     </label>
                                 </li>
@@ -76,7 +76,7 @@ const TrueFalseQuestion = ({question}) => {
                                         <input
                                             type="radio"
                                             checked
-                                            onClick={() => setAnswer(false)}
+                                            onClick={() => {setAnswer(false); question.answer=JSON.stringify(false);}}
                                             name={question._id}/>False
                                             <i className="fas fa-check" style={{color:"green"}}></i>
                                     </label>
@@ -90,7 +90,7 @@ const TrueFalseQuestion = ({question}) => {
                                      <label>
                                         <input
                                              type="radio"
-                                             onClick={() => setAnswer(true)}
+                                             onClick={() => {setAnswer(true); question.answer=JSON.stringify(true);}}
                                              name={question._id}/>True
                                              <i className="fas fa-check" style={{color:"green"}}></i>
                                      </label>
@@ -100,7 +100,7 @@ const TrueFalseQuestion = ({question}) => {
                                         <input
                                                type="radio"
                                                checked
-                                               onClick={() => setAnswer(false)}
+                                               onClick={() => {setAnswer(false); question.answer=JSON.stringify(false);}}
                                                name={question._id}/>False
                                                <i className="fas fa-times" style={{color:"red"}}></i>
                                     </label>
@@ -115,7 +115,7 @@ const TrueFalseQuestion = ({question}) => {
                                         <input
                                              type="radio"
                                              checked
-                                             onClick={() => setAnswer(true)}
+                                             onClick={() => {setAnswer(true); question.answer=JSON.stringify(true);}}
                                              name={question._id}/>True
                                              <i className="fas fa-times" style={{color:"red"}}></i>
                                     </label>
@@ -124,7 +124,7 @@ const TrueFalseQuestion = ({question}) => {
                                     <label>
                                         <input
                                              type="radio"
-                                             onClick={() => setAnswer(false)}
+                                             onClick={() => {setAnswer(false); question.answer=JSON.stringify(false);}}
                                              name={question._id}/>False
                                              <i className="fas fa-check" style={{color:"green"}}></i>
                                     </label>
@@ -134,11 +134,6 @@ const TrueFalseQuestion = ({question}) => {
 
                         </ul>
                     </div>
-                    <br/>
-                    <button onClick={() => setIsAnswerCorrect(JSON.stringify(answer) == question.correct)} style={{backgroundColor: "green", borderRadius: "5px"}}>
-                        Grade
-                    </button>
-                    <br/>
                     <br/>
             </>
 

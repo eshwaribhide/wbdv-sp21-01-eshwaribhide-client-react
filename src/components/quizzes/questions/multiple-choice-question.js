@@ -24,7 +24,7 @@ const MultipleChoiceQuestion = ({question}) => {
                             <li className="list-group-item">
                                 <label>
                                     <input type="radio"
-                                    onClick={() => setAnswer(choice)}
+                                    onClick={() => {setAnswer(choice); question.answer=choice;}}
                                     name={question._id}/>
                                     {choice}
                                     <br/>
@@ -44,7 +44,7 @@ const MultipleChoiceQuestion = ({question}) => {
                                    <li className="list-group-item list-group-item-success">
                                        <label>
                                            <input type="radio"
-                                           onClick={() => setAnswer(choice)}
+                                           onClick={() => {setAnswer(choice); question.answer=choice;}}
                                            checked
                                            name={question._id}/>
                                            {choice}
@@ -59,7 +59,7 @@ const MultipleChoiceQuestion = ({question}) => {
                                    <li className="list-group-item list-group-item-success">
                                        <label>
                                            <input type="radio"
-                                           onClick={() => setAnswer(choice)}
+                                           onClick={() => {setAnswer(choice); question.answer=choice;}}
                                            name={question._id}/>
                                            {choice}
                                            <i className="fas fa-check" style={{color:"green"}}></i>
@@ -74,7 +74,7 @@ const MultipleChoiceQuestion = ({question}) => {
                                    <li className="list-group-item">
                                        <label>
                                            <input type="radio"
-                                           onClick={() => setAnswer(choice)}
+                                           onClick={() => {setAnswer(choice); question.answer=choice;}}
                                            checked
                                            name={question._id}/>
                                            {choice}
@@ -88,7 +88,7 @@ const MultipleChoiceQuestion = ({question}) => {
                            <li className="list-group-item">
                                <label>
                                    <input type="radio"
-                                   onClick={() => setAnswer(choice)}
+                                   onClick={() => {setAnswer(choice); question.answer=choice;}}
 
                                    name={question._id}/>
                                    {choice}
@@ -110,7 +110,7 @@ const MultipleChoiceQuestion = ({question}) => {
                                    <li className="list-group-item list-group-item-success">
                                        <label>
                                            <input type="radio"
-                                           onClick={() => setAnswer(choice)}
+                                           onClick={() => {setAnswer(choice); question.answer=choice;}}
                                            checked
                                            name={question._id}/>
                                            {choice}
@@ -125,7 +125,7 @@ const MultipleChoiceQuestion = ({question}) => {
                                                            <li className="list-group-item list-group-item-success">
                                                                <label>
                                                                    <input type="radio"
-                                                                   onClick={() => setAnswer(choice)}
+                                                                   onClick={() => {setAnswer(choice); question.answer=choice;}}
                                                                    name={question._id}/>
                                                                    {choice}
                                                                    <i className="fas fa-check" style={{color:"green"}}></i>
@@ -140,7 +140,7 @@ const MultipleChoiceQuestion = ({question}) => {
                                                            <li className="list-group-item list-group-item-danger">
                                                                <label>
                                                                    <input type="radio"
-                                                                   onClick={() => setAnswer(choice)}
+                                                                   onClick={() => {setAnswer(choice); question.answer=choice;}}
                                                                    checked
                                                                    name={question._id}/>
                                                                    {choice}
@@ -155,7 +155,7 @@ const MultipleChoiceQuestion = ({question}) => {
                                    <li className="list-group-item">
                                        <label>
                                            <input type="radio"
-                                           onClick={() => setAnswer(choice)}
+                                           onClick={() => {setAnswer(choice); question.answer=choice;}}
                                            name={question._id}/>
                                            {choice}
                                            <br/>
@@ -168,11 +168,6 @@ const MultipleChoiceQuestion = ({question}) => {
 
                 </ul>
            </div>
-           <br/>
-            <button onClick={() => setIsAnswerCorrect(answer == question.correct)} style={{backgroundColor: "green", borderRadius: "5px"}}>
-              Grade
-            </button>
-            <br/>
             <br/>
         </>
     )
