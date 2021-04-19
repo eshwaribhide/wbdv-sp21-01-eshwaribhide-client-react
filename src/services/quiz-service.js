@@ -1,9 +1,9 @@
 export const findAllQuizzes = (quizId) =>
-    fetch("http://localhost:3000/api/quizzes")
+    fetch("https://wbdv-eshwaribhide-server-node.herokuapp.com/api/quizzes")
                 .then(response => response.json())
 
 export const submitQuiz = (quizId, questions) =>
- fetch(`http://localhost:3000/api/quizzes/${quizId}/attempts`, {
+ fetch(`https://wbdv-eshwaribhide-server-node.herokuapp.com/api/quizzes/${quizId}/attempts`, {
    method: 'POST',
    body: JSON.stringify(questions),
    headers: {
