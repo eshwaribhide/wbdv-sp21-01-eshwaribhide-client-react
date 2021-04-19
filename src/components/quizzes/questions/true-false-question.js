@@ -1,24 +1,23 @@
 import React, {useState} from "react";
 
-const TrueFalseQuestion = ({question}) => {
+const TrueFalseQuestion = ({question, submitted, isAnswerCorrect}) => {
     const [answer, setAnswer] = useState(null)
-    const [isAnswerCorrect, setIsAnswerCorrect] = useState(null)
     return (
                 <>
                     <h4>
                         {question.question}
                         {
-                            isAnswerCorrect!= null && isAnswerCorrect &&
+                            submitted && isAnswerCorrect &&
                             <i className="fas fa-check" style={{color:"green"}}></i>
                         }
                         {
-                             isAnswerCorrect!= null && !isAnswerCorrect &&
+                             submitted && !isAnswerCorrect &&
                             <i className="fas fa-times" style={{color:"red"}}></i>
                         }
                     </h4>
                     <div class="col-3">
                         <ul className="list-group">
-                            {isAnswerCorrect == null &&
+                            {!submitted &&
                             <>
                                 <li className="list-group-item">
                                     <label>
@@ -38,14 +37,14 @@ const TrueFalseQuestion = ({question}) => {
                             </>
                             }
 
-                            {isAnswerCorrect != null && isAnswerCorrect && answer &&
+                            {submitted && isAnswerCorrect && answer &&
                             <>
                                 <li className="list-group-item list-group-item-success">
                                     <label>
                                         <input
                                             type="radio"
                                             checked
-                                            onClick={() => {setAnswer(true); question.answer=JSON.stringify(true);}}
+                                            onClick={() => {setAnswer(true); submitted=false; question.answer=JSON.stringify(true);}}
                                             name={question._id}/>True
                                             <i className="fas fa-check" style={{color:"green"}}></i>
                                     </label>
@@ -54,20 +53,20 @@ const TrueFalseQuestion = ({question}) => {
                                     <label>
                                         <input
                                           type="radio"
-                                          onClick={() => {setAnswer(false); question.answer=JSON.stringify(false);}}
+                                          onClick={() => {setAnswer(false); submitted=false; question.answer=JSON.stringify(false);}}
                                           name={question._id}/>False
                                     </label>
                                 </li>
                             </>
                             }
 
-                            {isAnswerCorrect != null && isAnswerCorrect && !answer &&
+                            {submitted && isAnswerCorrect && !answer &&
                             <>
                                 <li className="list-group-item">
                                     <label>
                                         <input
                                             type="radio"
-                                            onClick={() => {setAnswer(true); question.answer=JSON.stringify(true);}}
+                                            onClick={() => {setAnswer(true); submitted=false; question.answer=JSON.stringify(true);}}
                                             name={question._id}/>True
                                     </label>
                                 </li>
@@ -76,7 +75,7 @@ const TrueFalseQuestion = ({question}) => {
                                         <input
                                             type="radio"
                                             checked
-                                            onClick={() => {setAnswer(false); question.answer=JSON.stringify(false);}}
+                                            onClick={() => {setAnswer(false); submitted=false; question.answer=JSON.stringify(false);}}
                                             name={question._id}/>False
                                             <i className="fas fa-check" style={{color:"green"}}></i>
                                     </label>
@@ -84,13 +83,13 @@ const TrueFalseQuestion = ({question}) => {
                              </>
                             }
 
-                            {isAnswerCorrect != null && !isAnswerCorrect && !answer &&
+                            {submitted && !isAnswerCorrect && !answer &&
                              <>
                                  <li className="list-group-item list-group-item-success">
                                      <label>
                                         <input
                                              type="radio"
-                                             onClick={() => {setAnswer(true); question.answer=JSON.stringify(true);}}
+                                             onClick={() => {setAnswer(true); submitted=false; question.answer=JSON.stringify(true);}}
                                              name={question._id}/>True
                                              <i className="fas fa-check" style={{color:"green"}}></i>
                                      </label>
@@ -100,7 +99,7 @@ const TrueFalseQuestion = ({question}) => {
                                         <input
                                                type="radio"
                                                checked
-                                               onClick={() => {setAnswer(false); question.answer=JSON.stringify(false);}}
+                                               onClick={() => {setAnswer(false); submitted=false; question.answer=JSON.stringify(false);}}
                                                name={question._id}/>False
                                                <i className="fas fa-times" style={{color:"red"}}></i>
                                     </label>
@@ -108,14 +107,14 @@ const TrueFalseQuestion = ({question}) => {
                              </>
                              }
 
-                             {isAnswerCorrect != null && !isAnswerCorrect && answer &&
+                             {submitted && !isAnswerCorrect && answer &&
                              <>
                                  <li className="list-group-item list-group-item-danger">
                                     <label>
                                         <input
                                              type="radio"
                                              checked
-                                             onClick={() => {setAnswer(true); question.answer=JSON.stringify(true);}}
+                                             onClick={() => {setAnswer(true); submitted=false; question.answer=JSON.stringify(true);}}
                                              name={question._id}/>True
                                              <i className="fas fa-times" style={{color:"red"}}></i>
                                     </label>
@@ -124,7 +123,7 @@ const TrueFalseQuestion = ({question}) => {
                                     <label>
                                         <input
                                              type="radio"
-                                             onClick={() => {setAnswer(false); question.answer=JSON.stringify(false);}}
+                                             onClick={() => {setAnswer(false); submitted=false; question.answer=JSON.stringify(false);}}
                                              name={question._id}/>False
                                              <i className="fas fa-check" style={{color:"green"}}></i>
                                     </label>

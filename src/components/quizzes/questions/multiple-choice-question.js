@@ -1,23 +1,23 @@
 import React, {useState}  from "react";
 
-const MultipleChoiceQuestion = ({question}) => {
+const MultipleChoiceQuestion = ({question, submitted, isAnswerCorrect}) => {
     const [answer, setAnswer] = useState(null)
-    const [isAnswerCorrect, setIsAnswerCorrect] = useState(null)
+    //const [isAnswerCorrect, setIsAnswerCorrect] = useState(null)
     return(
         <>
             <h4>{question.question}
                 {
-                   isAnswerCorrect!= null && isAnswerCorrect &&
+                   submitted && isAnswerCorrect &&
                    <i className="fas fa-check" style={{color:"green"}}></i>
                }
                {
-                    isAnswerCorrect!= null && !isAnswerCorrect &&
+                    submitted && !isAnswerCorrect &&
                    <i className="fas fa-times" style={{color:"red"}}></i>
                }
            </h4>
            <div class="col-3">
                <ul className="list-group">
-                {isAnswerCorrect == null &&
+                {!submitted &&
                     question.choices.map((choice) => {
                         return(
                         <>
@@ -36,7 +36,7 @@ const MultipleChoiceQuestion = ({question}) => {
                     })
                 }
 
-                {isAnswerCorrect != null && isAnswerCorrect &&
+                {submitted && isAnswerCorrect &&
                 question.choices.map((choice) => {
                     if (choice === question.correct) {
                         if (choice == answer) {
@@ -100,7 +100,7 @@ const MultipleChoiceQuestion = ({question}) => {
                     }
                 })}
 
-                {isAnswerCorrect != null && !isAnswerCorrect &&
+                {submitted && !isAnswerCorrect &&
 
                 question.choices.map((choice) => {
 

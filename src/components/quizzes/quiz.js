@@ -8,6 +8,7 @@ const Quiz = () => {
     const {courseId, quizId} = useParams();
     const [questions, setQuestions] = useState([]);
     const [attempts, setAttempts] = useState([]);
+    const [submitted, setSubmitted] = useState(false);
     useEffect(() => {
        questionsService.findAllQuestions(quizId)
             .then(questions => setQuestions(questions))
@@ -19,14 +20,22 @@ const Quiz = () => {
             <ul>
                 {
                     questions.map(question =>
+
                     <li>
-                        <Question question={question}/>
+                        <Question question={question} submitted={submitted}
+                        isAnswerCorrect={(JSON.stringify(question.answer) === JSON.stringify(question.correct))}/>
                     </li>
                     )
+
                 }
             </ul>
             <div class="col-sm-3">
-            <button class='btn btn-success btn-block' onClick={() => quizService.submitQuiz(quizId, questions).then(result => {setAttempts([...attempts, result.score])})} style={{backgroundColor: "green", borderRadius: "5px"}}>
+            <button class='btn btn-success btn-block'
+                onClick={() =>
+                {quizService.submitQuiz(quizId, questions).then(result => {setAttempts([...attempts, result.score])});
+                 setSubmitted(true);
+                }}
+                style={{backgroundColor: "green", borderRadius: "5px"}}>
                 Submit
             </button>
             </div>
